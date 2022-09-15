@@ -2,31 +2,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { Route, Routes } from 'react-router-dom';
+import { ethBlockLatest } from './Logic/Request.js';
 
-async function fetchData(){
-  fetch('https://cloudflare-eth.com',{
-    method: 'POST',
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      method: 'eth_getBlockByNumber',
-      params: ['latest', true],
-      id: 1,
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    }
-  }).then((response) => {
-    console.log(response.json());
-  })
+async function LogETH() {
+  return (await ethBlockLatest()).json();
 }
 
 function App() {
-  useEffect(() => {
-    fetchData();
-  },[]);
 
   return (
-    <Form>
+    <Routes>
+      <Route path="/block/:blockId" element={<div>1{LogETH()}</div>}/>
+      <Route path="/block/latest" element={<div>2{LogETH()}</div>}/>
+    </Routes>
+  );
+}
+
+/*
+<Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" /> 
@@ -46,7 +40,6 @@ function App() {
         Submit
       </Button>
     </Form>
-  );
-}
+    */
 
 export default App;
