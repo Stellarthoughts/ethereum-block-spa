@@ -1,8 +1,8 @@
-function fetchData(url, body){
+async function fetchData(url, body){
     return fetch(url, body);
 }
 
-export function ethBlockLatest() 
+export async function getEthBlockLatest() 
 {
     return fetchData('https://cloudflare-eth.com',{
         method: 'POST',
@@ -18,7 +18,7 @@ export function ethBlockLatest()
     });
 }
 
-export function ethBlockByID(id)
+export async function getEthBlockByID(id)
 {
     return fetchData('https://cloudflare-eth.com',{
         method: 'POST',

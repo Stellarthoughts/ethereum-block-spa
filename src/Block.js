@@ -1,21 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import { Route, Routes } from 'react-router-dom';
-import { ethBlockLatest } from './Logic/Request.js';
+import { useLoaderData } from 'react-router-dom';
 
-async function LogETH() {
-  return (await ethBlockLatest()).json();
-}
 
 function App() {
+  const loaderData = useLoaderData();
+  console.log(loaderData);
 
   return (
-    <Routes>
-      <Route path="/block/:blockId" element={<div>1{LogETH()}</div>}/>
-      <Route path="/block/latest" element={<div>2{LogETH()}</div>}/>
-    </Routes>
+    <div>hello</div>
   );
 }
 
