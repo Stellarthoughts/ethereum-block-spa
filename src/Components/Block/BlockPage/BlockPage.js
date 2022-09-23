@@ -4,7 +4,6 @@ import BlockViewer from '../BlockViewer/BlockViewer';
 
 function BlockPage() {
   const loaderData = useLoaderData();
-  console.log(loaderData);
 
   return (
     <div>
