@@ -1,13 +1,16 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useLoaderData } from 'react-router-dom';
+import BlockSelector from '../BlockSelector/BlockSelector';
+import BlockViewer from '../BlockViewer/BlockViewer';
 
-
-function App() {
+function BlockPage() {
   const loaderData = useLoaderData();
   console.log(loaderData);
 
   return (
-    <div>hello</div>
+    <div>
+      <BlockSelector/>
+      <BlockViewer blockData={loaderData.result}/>
+    </div>
   );
 }
 
@@ -34,4 +37,4 @@ function App() {
     </Form>
     */
 
-export default App;
+export default BlockPage;

@@ -1,10 +1,9 @@
-async function fetchData(url, body){
-    return fetch(url, body);
+function handleEth_getBlockByNumber(res) {
+  return res;
 }
 
-export async function getEthBlockLatest() 
-{
-    return fetchData('https://cloudflare-eth.com',{
+export async function getEthBlockLatest() {
+    const res = await fetch('https://cloudflare-eth.com',{
         method: 'POST',
         body: JSON.stringify({
           jsonrpc: '2.0',
@@ -16,11 +15,11 @@ export async function getEthBlockLatest()
           'Content-Type': 'application/json',
         }
     });
+    return handleEth_getBlockByNumber(res);
 }
 
-export async function getEthBlockByID(id)
-{
-    return fetchData('https://cloudflare-eth.com',{
+export async function getEthBlockByID(id){
+    const res = await fetch('https://cloudflare-eth.com',{
         method: 'POST',
         body: JSON.stringify({
           jsonrpc: '2.0',
@@ -32,4 +31,5 @@ export async function getEthBlockByID(id)
           'Content-Type': 'application/json',
         }
     });
+    return handleEth_getBlockByNumber(res);
 }

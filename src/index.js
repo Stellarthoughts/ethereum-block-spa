@@ -5,24 +5,28 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './index.css';
-import App from './Block';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import BlockPage from './Components/Block/BlockPage/BlockPage';
 import reportWebVitals from './reportWebVitals';
 import { getEthBlockByID, getEthBlockLatest } from './Logic/Request';
+import ErrorPage from './Components/Error/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: "/:id",
-    element: <App/>,
+    element: <BlockPage/>,
     loader: async ({params}) => {
       return getEthBlockByID(params.id);
-    }
+    },
+    errorElement: <ErrorPage/>,
   },
   {
     path: "/latest",
-    element: <App/>,
+    element: <BlockPage/>,
     loader: async () => {
       return getEthBlockLatest();
-    }
+    },
+    errorElement: <ErrorPage/>,
   }
 ], {basename: "/block"});
 
