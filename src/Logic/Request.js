@@ -1,5 +1,6 @@
 function handleEth_getBlockByNumber(res) {
   return res;
+
 }
 
 export async function getEthBlockLatest() {
@@ -24,8 +25,8 @@ export async function getEthBlockByID(id){
         body: JSON.stringify({
           jsonrpc: '2.0',
           method: 'eth_getBlockByNumber',
-          params: ['latest', false],
-          id: id,
+          params: [id.toString(16), true],
+          id: 2,
         }),
         headers: {
           'Content-Type': 'application/json',
