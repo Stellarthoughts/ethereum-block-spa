@@ -6,8 +6,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import BlockPage from "./Components/Block/BlockPage/BlockPage";
 import reportWebVitals from "./reportWebVitals";
 import { getEthBlockByID, getEthBlockNumber } from "./Logic/Request";
-import ErrorPage from "./Components/Error/ErrorPage/ErrorPage";
 
+// All routes in this SPA are listed here. Redirects from / and /block to latest block, which
+// in turn finds the last block and redirects to proper BlockPage
 const router = createBrowserRouter(
 	[
 		{
@@ -24,7 +25,7 @@ const router = createBrowserRouter(
 			loader: async ({ params }) => {
 				return getEthBlockByID(parseInt(params.id));
 			},
-			errorElement: <ErrorPage />,
+			errorElement: <BlockPage error={true}/>,
 		},
 		{
 			path: "/block/latest",
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
 			loader: async () => {
 				return getEthBlockNumber();
 			},
+			errorElement: <BlockPage error={true}/>,
 		},
 	]
 );

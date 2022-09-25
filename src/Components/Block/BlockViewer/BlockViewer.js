@@ -1,4 +1,4 @@
-import { Form, Stack } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 function BlockViewer(props) {
   const blockData = props.blockData;
@@ -8,11 +8,13 @@ function BlockViewer(props) {
     return parseInt(num, 16);
   };
 
+	const firstColXS = 2;
+
   const blockHeight = toDec(blockData.number);
+	const blockHash = blockData.hash;
   const status = 0;
   const timestamp = new Date(blockData.timestamp * 1000).toLocaleDateString();
   const transactions = blockData.transactions.length;
-	const contracts = 0;
 	const difficulty = toDec(blockData.difficulty);
 	const totalDifficulty = toDec(blockData.totalDifficulty);
   const minedBy = blockData.miner;
@@ -22,69 +24,55 @@ function BlockViewer(props) {
 	const gasLimit = toDec(blockData.gasLimit);
 	const gasUsed = toDec(blockData.gasUsed);
 	const extraData = blockData.extraData;
-	const etherPrice = 0;
 
   return (
-    <Form>
-      <Stack gap={2}>
-        <Stack direction="horizontal" gap={3}>
-          <div>Block Height</div>
-          <div>{blockHeight}</div>
-        </Stack>
-        <Stack direction="horizontal" gap={3}>
-          <div>Status</div>
-          <div>{status}</div>
-        </Stack>
-        <Stack direction="horizontal" gap={3}>
-          <div>Timestamp</div>
-          <div>{timestamp}</div>
-        </Stack>
-        <Stack direction="horizontal" gap={3}>
-          <div>Transactions</div>
-          <div>{transactions}</div>
-        </Stack>
-        <Stack direction="horizontal" gap={3}>
-          <div>Mined by</div>
-          <div>{minedBy}</div>
-        </Stack>
-        <Stack direction="horizontal" gap={3}>
-          <div>Block Reward</div>
-          <div>{blockReward}</div>
-        </Stack>
-        <Stack direction="horizontal" gap={3}>
-          <div>Uncles Reward</div>
-          <div>{unclesReward}</div>
-        </Stack>
-        <Stack direction="horizontal" gap={3}>
-          <div>Difficulty</div>
-          <div>{difficulty.toLocaleString()}</div>
-        </Stack>
-        <Stack direction="horizontal" gap={3}>
-          <div>Total Difficulty</div>
-          <div>{totalDifficulty.toLocaleString()}</div>
-        </Stack>
-        <Stack direction="horizontal" gap={3}>
-          <div>Size</div>
-          <div>{size}</div>
-        </Stack>
-        <Stack direction="horizontal" gap={3}>
-          <div>Gas used</div>
-          <div>{gasUsed.toLocaleString()}</div>
-        </Stack>
-        <Stack direction="horizontal" gap={3}>
-          <div>Gas limit</div>
-          <div>{gasLimit}</div>
-        </Stack>
-        <Stack direction="horizontal" gap={3}>
-          <div>Extra Data</div>
-          <div>{extraData}</div>
-        </Stack>
-        <Stack direction="horizontal" gap={3}>
-          <div>Ether Price</div>
-          <div>{etherPrice}</div>
-        </Stack>
-      </Stack>
-    </Form>
+    <Container fluid>
+			<h4>Block #{parseInt(blockData.number,16)}</h4>
+			<Row>
+				<Col xs={firstColXS}>Block Height</Col>
+				<Col>{blockHeight}</Col>
+			</Row>
+			<Row>
+				<Col xs={firstColXS}>Block Hash</Col>
+				<Col>{blockHash}</Col>
+			</Row>
+			<Row>
+				<Col xs={firstColXS}>Timestamp</Col>
+				<Col>{timestamp}</Col>
+			</Row>
+			<Row>
+				<Col xs={firstColXS}>Transactions</Col>
+				<Col>{transactions}</Col>
+			</Row>
+			<Row>
+				<Col xs={firstColXS}>Mined by</Col>
+				<Col>{minedBy}</Col>
+			</Row>
+			<Row>
+				<Col xs={firstColXS}>Difficulty</Col>
+				<Col>{difficulty.toLocaleString()}</Col>
+			</Row>
+			<Row>
+				<Col xs={firstColXS}>Total Difficulty</Col>
+				<Col>{totalDifficulty.toLocaleString()}</Col>
+			</Row>
+			<Row>
+				<Col xs={firstColXS}>Size</Col>
+				<Col>{size} bytes</Col>
+			</Row>
+			<Row>
+				<Col xs={firstColXS}>Gas used</Col>
+				<Col>{gasUsed.toLocaleString()}</Col>
+			</Row>
+			<Row>
+				<Col xs={firstColXS}>Gas limit</Col>
+				<Col>{gasLimit.toLocaleString()}</Col>
+			</Row>
+			<Row>
+				<Col xs={firstColXS}>Extra Data</Col>
+				<Col>{extraData}</Col>
+			</Row>
+    </Container>
   );
 }
 

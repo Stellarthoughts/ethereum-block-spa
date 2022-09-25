@@ -1,3 +1,5 @@
+// Requests to Cloudfare API and handling
+
 function handleEth_getBlockByNumber(res) {
   return res;
 
