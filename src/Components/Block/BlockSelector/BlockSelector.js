@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Stack } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
-function BlockSelector() {
+function BlockSelector(props) {
 	const navigate = useNavigate();
 	const [blockNum, changeBlockNum] = useState(0);
 
@@ -15,22 +15,25 @@ function BlockSelector() {
 
 	const handleOnSubmit = e => {
 		e.preventDefault();
-		console.log("here");
-		navigate(`../${blockNum}`);
+		navigate(`../${blockNum}`, {relative:"path"});
 	}
 
 	return (
 		<Form onSubmit={handleOnSubmit}>
 			<Form.Group>
 				<Form.Label>Enter the required ETH block number to view</Form.Label>
-				<Form.Control 
-					placeholder="Block number" 
-					onChange={handleOnChange}
-					/>
+				<Stack gap={3} direction="horizontal">
+					<Form.Control 
+						className="me-auto"
+						placeholder="Block number" 
+						onChange={handleOnChange}
+						/>
+					<Link to={`../${blockNum}`} relative="path"><Button>View</Button></Link>
+					<div className="vr"/>
+					<Link to="../latest" relative="path"><Button>Latest</Button></Link>
+				</Stack>
 				<Form.Text>Then submit, or view the latest block instead</Form.Text>
 			</Form.Group>
-			<Link to={`../${blockNum}`} relative="path"><Button>View this block</Button></Link>
-			<Link to="../latest" relative="path"><Button>Latest</Button></Link>
 		</Form>
 	);
 }

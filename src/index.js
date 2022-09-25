@@ -1,17 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Navigate, RouterProvider, useLoaderData } from "react-router-dom";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BlockPage from "./Components/Block/BlockPage/BlockPage";
 import reportWebVitals from "./reportWebVitals";
-import { getEthBlockByID, getEthBlockLatest } from "./Logic/Request";
+import { getEthBlockByID, getEthBlockNumber } from "./Logic/Request";
 import ErrorPage from "./Components/Error/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter(
 	[
 		{
-			path: "/:id",
+			path: "/",
+			element: <Navigate to="block/latest"/>
+		},
+		{
+			path: "/block",
+			element: <Navigate to="/latest"/>
+		},
+		{
+			path: "/block/:id",
 			element: <BlockPage />,
 			loader: async ({ params }) => {
 				return getEthBlockByID(parseInt(params.id));
@@ -19,16 +27,19 @@ const router = createBrowserRouter(
 			errorElement: <ErrorPage />,
 		},
 		{
-			path: "/latest",
-			element: <BlockPage />,
+			path: "/block/latest",
+			element: <LatestReroute/>,
 			loader: async () => {
-				return getEthBlockLatest();
+				return getEthBlockNumber();
 			},
-			errorElement: <ErrorPage />,
 		},
-	],
-	{ basename: "/block" }
+	]
 );
+
+function LatestReroute() {
+	const loader = useLoaderData();
+	return (<Navigate to={`../${parseInt(loader.result,16)}`}  relative="path"/>);
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
