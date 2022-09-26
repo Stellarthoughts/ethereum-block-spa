@@ -1,5 +1,4 @@
 import { Container, Row, Col } from "react-bootstrap";
-import { ClickToCopy } from "../General";
 
 function BlockViewer(props) {
   const blockData = props.blockData;
@@ -9,7 +8,6 @@ function BlockViewer(props) {
     return parseInt(num, 16);
   };
 
-  const firstColXS = 1;
 
   const blockHeight = toDec(blockData.number);
   const blockHash = blockData.hash;
