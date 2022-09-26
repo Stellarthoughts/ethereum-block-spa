@@ -2,12 +2,10 @@ import { Container, Row, Col } from "react-bootstrap";
 
 function BlockViewer(props) {
   const blockData = props.blockData;
-  console.log(blockData);
 
   const toDec = (num) => {
     return parseInt(num, 16);
   };
-
 
   const blockHeight = toDec(blockData.number);
   const blockHash = blockData.hash;
