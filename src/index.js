@@ -22,7 +22,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/block",
-    element: <Navigate to="/latest" />,
+    element: <Navigate to="latest" />,
   },
   {
     path: "/block/:id",
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
     loader: async ({ params }) => {
       return getEthBlockByID(parseInt(params.id));
     },
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/block/latest",
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
     loader: async () => {
       return getEthBlockNumber();
     },
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
   },
 ]);
 

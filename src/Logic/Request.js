@@ -2,20 +2,23 @@
 
 async function handleEth_getBlockByNumber(res) {
   if (res.status !== 200) {
-    throw new Response("API request failed. Oh no", { status: res.status });
+    throw new Response("API request failed. Oh no.", { status: res.status });
   }
-	const json = await res.json();
-	if (json.error != null) {
-		throw new Response(`API answered, but ended in error — ${json.error.message}`, {
-			status: 404,
-		});
-	}
+  const json = await res.json();
+  if (json.error != null) {
+    throw new Response(
+      `API answered, but ended in error — ${json.error.message}.`,
+      {
+        status: 404,
+      }
+    );
+  }
   return json;
 }
 
 async function handleEth_blockNumber(res) {
-	if (res.status !== 200) {
-    throw new Response("API request failed. Oh no", { status: res.status });
+  if (res.status !== 200) {
+    throw new Response("API request failed. Oh no.", { status: res.status });
   }
   return res;
 }

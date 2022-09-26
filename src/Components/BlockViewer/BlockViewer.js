@@ -1,4 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
+import { ClickToCopy } from "../General";
 
 function BlockViewer(props) {
   const blockData = props.blockData;
@@ -8,66 +9,46 @@ function BlockViewer(props) {
     return parseInt(num, 16);
   };
 
-	const firstColXS = 2;
+  const firstColXS = 1;
 
   const blockHeight = toDec(blockData.number);
-	const blockHash = blockData.hash;
+  const blockHash = blockData.hash;
   const timestamp = new Date(blockData.timestamp * 1000).toLocaleDateString();
   const transactions = blockData.transactions.length;
-	const difficulty = toDec(blockData.difficulty);
-	const totalDifficulty = toDec(blockData.totalDifficulty);
+  const difficulty = toDec(blockData.difficulty);
+  const totalDifficulty = toDec(blockData.totalDifficulty);
   const minedBy = blockData.miner;
-	const size = toDec(blockData.size);
-	const gasLimit = toDec(blockData.gasLimit);
-	const gasUsed = toDec(blockData.gasUsed);
-	const extraData = blockData.extraData;
+  const size = toDec(blockData.size);
+  const gasLimit = toDec(blockData.gasLimit);
+  const gasUsed = toDec(blockData.gasUsed);
+  const extraData = blockData.extraData;
+	
+	function GenericRow(props)
+	{
+		return (
+			<Row xs={1} md={2}>
+				<Col><strong>{props.name}</strong></Col>
+				<Col>{props.value}</Col>
+			</Row>
+		);
+	}
 
   return (
-    <Container className="container-pad" fluid>
-			<Row>
-				<Col xs={firstColXS}>Block Height</Col>
-				<Col>{blockHeight}</Col>
-			</Row>
-			<Row>
-				<Col xs={firstColXS}>Block Hash</Col>
+    <Container className="container-pad" style={{marginLeft:0, marginRight: 0}}>
+			<GenericRow name="Block Height" value={blockHeight}/>
+			<Row xs={1} md={2}>
+				<Col><strong>Block Hash</strong></Col>
 				<Col>{blockHash}</Col>
 			</Row>
-			<Row>
-				<Col xs={firstColXS}>Timestamp</Col>
-				<Col>{timestamp}</Col>
-			</Row>
-			<Row>
-				<Col xs={firstColXS}>Transactions</Col>
-				<Col>{transactions}</Col>
-			</Row>
-			<Row>
-				<Col xs={firstColXS}>Mined by</Col>
-				<Col>{minedBy}</Col>
-			</Row>
-			<Row>
-				<Col xs={firstColXS}>Difficulty</Col>
-				<Col>{difficulty.toLocaleString()}</Col>
-			</Row>
-			<Row>
-				<Col xs={firstColXS}>Total Difficulty</Col>
-				<Col>{totalDifficulty.toLocaleString()}</Col>
-			</Row>
-			<Row>
-				<Col xs={firstColXS}>Size</Col>
-				<Col>{size} bytes</Col>
-			</Row>
-			<Row>
-				<Col xs={firstColXS}>Gas used</Col>
-				<Col>{gasUsed.toLocaleString()}</Col>
-			</Row>
-			<Row>
-				<Col xs={firstColXS}>Gas limit</Col>
-				<Col>{gasLimit.toLocaleString()}</Col>
-			</Row>
-			<Row>
-				<Col xs={firstColXS}>Extra Data</Col>
-				<Col>{extraData}</Col>
-			</Row>
+			<GenericRow name="Timestamp" value={timestamp}/>
+			<GenericRow name="Transactions" value={transactions}/>
+			<GenericRow name="Mined by" value={minedBy}/>
+			<GenericRow name="Difficulty" value={difficulty.toLocaleString()}/>
+			<GenericRow name="Total Difficulty" value={totalDifficulty.toLocaleString()}/>
+			<GenericRow name="Size" value={size}/>
+			<GenericRow name="Gas used" value={gasUsed.toLocaleString()}/>
+			<GenericRow name="Gas limit" value={gasLimit.toLocaleString()}/>
+			<GenericRow name="Extra Data" value={extraData}/>
     </Container>
   );
 }
