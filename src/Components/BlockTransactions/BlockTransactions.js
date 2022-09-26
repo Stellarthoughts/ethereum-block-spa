@@ -1,5 +1,4 @@
 import { Container, Table, Button } from "react-bootstrap";
-import "./BlockTransactions.css";
 
 function ClickToCopy(props) {
 	const text = props.text;
@@ -10,7 +9,7 @@ function ClickToCopy(props) {
   }
 
   return (
-      <Button onClick={copy}>
+      <Button style={{width:"100%"}} onClick={copy}>
         {props.text}
       </Button>
   );
@@ -18,33 +17,36 @@ function ClickToCopy(props) {
 
 function BlockTransactions(props) {
 
-	return (
-		<Container fluid>
-			<h4>Block Transactions</h4>
-			<Table bordered fluid>
-				<thead>
-					<tr>
-						<th>From</th>
-						<th>To</th>
-						<th>Transaction hash</th>
-					</tr>
-				</thead>
-				<tbody>
-				{
-					props.blockData.transactions.map(x => {
-						return (
-							<tr key={x.hash}>
-								<td >{x.from}</td>
-								<td >{x.to}</td>
-								<td><ClickToCopy text={x.hash}/></td>
-							</tr>
-						);
-					})
-				}
-				</tbody>
-			</Table>
-		</Container>
-	);
+	if(props.show){
+		return (
+			<Container className="container-pad" fluid>
+				<Table bordered responsive>
+					<thead>
+						<tr>
+							<th>From</th>
+							<th>To</th>
+							<th>Transaction hash</th>
+						</tr>
+					</thead>
+					<tbody>
+					{
+						props.blockData.transactions.map(x => {
+							return (
+								<tr key={x.hash}>
+									<td><ClickToCopy text={x.from}/></td>
+									<td><ClickToCopy text={x.to}/></td>
+									<td><ClickToCopy text={x.hash}/></td>
+								</tr>
+							);
+						})
+					}
+					</tbody>
+				</Table>
+			</Container>
+		);
+	}
+	else return (<></>);
+	
 }
 
 export default BlockTransactions;

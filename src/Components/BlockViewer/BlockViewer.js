@@ -12,22 +12,18 @@ function BlockViewer(props) {
 
   const blockHeight = toDec(blockData.number);
 	const blockHash = blockData.hash;
-  const status = 0;
   const timestamp = new Date(blockData.timestamp * 1000).toLocaleDateString();
   const transactions = blockData.transactions.length;
 	const difficulty = toDec(blockData.difficulty);
 	const totalDifficulty = toDec(blockData.totalDifficulty);
   const minedBy = blockData.miner;
-	const blockReward = 0;
-	const unclesReward = 0;
 	const size = toDec(blockData.size);
 	const gasLimit = toDec(blockData.gasLimit);
 	const gasUsed = toDec(blockData.gasUsed);
 	const extraData = blockData.extraData;
 
   return (
-    <Container fluid>
-			<h4>Block #{parseInt(blockData.number,16)}</h4>
+    <Container className="container-pad" fluid>
 			<Row>
 				<Col xs={firstColXS}>Block Height</Col>
 				<Col>{blockHeight}</Col>

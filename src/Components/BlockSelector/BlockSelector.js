@@ -19,14 +19,14 @@ function BlockSelector(props) {
 	}
 
 	return (
-		<Container fluid>
+		<Container className="container-pad" fluid>
 			<Form onSubmit={handleOnSubmit}>
 				<Form.Group>
 					<Form.Label>Enter the required ETH block number to view</Form.Label>
 					<Stack gap={3} direction="horizontal">
 						<Form.Control 
+							style={{maxWidth: 500}}
 							type="number"
-							className="me-auto"
 							placeholder="Block number" 
 							onChange={handleOnChange}
 							/>
