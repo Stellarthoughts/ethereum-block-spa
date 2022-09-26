@@ -13,8 +13,11 @@ import reportWebVitals from "./reportWebVitals";
 import { getEthBlockByID, getEthBlockNumber } from "./Logic/Request";
 import ErrorPage from "./Components/ErrorPage/ErrorPage";
 
-// All routes in this SPA are listed here. Redirects from / and /block to latest block, which
-// in turn finds the last block and redirects to proper BlockPage
+// All routes in this SPA are listed here. Redirects from / and /block to latest block,
+// which in turn finds the last block and redirects to proper BlockPage
+// Error handling is done by react-router-dom, which detects the error in route
+// and redirects to corresponding errorElement. Some Responses for error hadnler
+// are thrown manually by me in Request.js
 const router = createBrowserRouter([
   {
     path: "/",

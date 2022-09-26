@@ -4,7 +4,6 @@ import BlockSelector from "../BlockSelector/BlockSelector";
 
 function ErrorPage() {
   const error = useRouteError();
-  console.log(error);
 
   return (
     <Container className="container-pad" fluid>
