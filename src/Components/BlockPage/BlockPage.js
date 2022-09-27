@@ -10,8 +10,8 @@ function BlockPage() {
   const [show, setShow] = useState(false);
 
   return (
-    <Container className="container-pad" fluid>
-      <h2 className="container-adjust-pad">ETH Block Viewer</h2>
+    <Container className="container-pad">
+      <h1 className="container-adjust-pad">ETH Block Viewer</h1>
       <BlockSelector />
       <h4 className="container-adjust-pad">
         Block #{parseInt(loaderData.result.number, 16)}
@@ -21,7 +21,7 @@ function BlockPage() {
         <h4 className="container-adjust-pad">Block Transactions</h4>
         <Button onClick={() => setShow(!show)}>{!show ? "Show" : "Hide"}</Button>
       </Stack>
-      <BlockTransactions blockData={loaderData.result} show={show} />
+      <BlockTransactions blockData={loaderData.result} show={show}/>
     </Container>
   );
 }

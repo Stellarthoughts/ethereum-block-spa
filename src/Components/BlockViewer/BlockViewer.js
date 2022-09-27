@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container,Table } from "react-bootstrap";
 
 function BlockViewer(props) {
   const blockData = props.blockData;
@@ -22,30 +22,34 @@ function BlockViewer(props) {
 	function GenericRow(props)
 	{
 		return (
-			<Row xs={1} md={2}>
-				<Col><strong>{props.name}</strong></Col>
-				<Col>{props.value}</Col>
-			</Row>
+			<tr xs={1} md={2}>
+				<td className="no-left-pad"><strong>{props.name}</strong></td>
+				<td>{props.value}</td>
+			</tr>
 		);
 	}
 
   return (
-    <Container className="container-pad" style={{marginLeft:0, marginRight: 0}}>
-			<GenericRow name="Block Height" value={blockHeight}/>
-			<Row xs={1} md={2}>
-				<Col><strong>Block Hash</strong></Col>
-				<Col>{blockHash}</Col>
-			</Row>
-			<GenericRow name="Timestamp" value={timestamp}/>
-			<GenericRow name="Transactions" value={transactions}/>
-			<GenericRow name="Mined by" value={minedBy}/>
-			<GenericRow name="Difficulty" value={difficulty.toLocaleString()}/>
-			<GenericRow name="Total Difficulty" value={totalDifficulty.toLocaleString()}/>
-			<GenericRow name="Size" value={size}/>
-			<GenericRow name="Gas used" value={gasUsed.toLocaleString()}/>
-			<GenericRow name="Gas limit" value={gasLimit.toLocaleString()}/>
-			<GenericRow name="Extra Data" value={extraData}/>
-    </Container>
+		<Container fluid className="container-pad">
+			<Table responsive size="md">
+				<tbody>
+					<GenericRow name="Block Height" value={blockHeight}/>
+					<tr xs={1} md={2}>
+						<td className="no-left-pad"><strong>Block Hash</strong></td>
+						<td>{blockHash}</td>
+					</tr>
+					<GenericRow name="Timestamp" value={timestamp}/>
+					<GenericRow name="Transactions" value={transactions}/>
+					<GenericRow name="Mined by" value={minedBy}/>
+					<GenericRow name="Difficulty" value={difficulty.toLocaleString()}/>
+					<GenericRow name="Total Difficulty" value={totalDifficulty.toLocaleString()}/>
+					<GenericRow name="Size" value={size}/>
+					<GenericRow name="Gas used" value={gasUsed.toLocaleString()}/>
+					<GenericRow name="Gas limit" value={gasLimit.toLocaleString()}/>
+					<GenericRow name="Extra Data" value={extraData}/>
+				</tbody>
+			</Table>
+		</Container>
   );
 }
 

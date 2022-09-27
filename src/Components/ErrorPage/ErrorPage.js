@@ -7,7 +7,7 @@ function ErrorPage() {
 
   return (
     <Container className="container-pad" fluid>
-      <h2 className="container-adjust-pad">ETH Block Viewer</h2>
+      <h1 className="container-adjust-pad">ETH Block Viewer</h1>
       <BlockSelector />
       <Container className="container-pad" fluid>
         <Alert style={{ maxWidth: 680 }} variant="danger">
