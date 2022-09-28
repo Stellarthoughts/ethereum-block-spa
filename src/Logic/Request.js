@@ -23,6 +23,18 @@ async function handleEth_blockNumber(res) {
   return res;
 }
 
+function inputValidation(val) {
+  if (!Number.isInteger(val)) {
+    throw new Response("Bad request value. Not an integer", { status: 404 });
+  }
+  if(!Number.isSafeInteger(val)) {
+    throw new Response("Bad request value. Out of bounds.", { status: 404 });
+  }
+  if(val < 0) {
+    throw new Response("Bad request value. Negative.", { status: 404 });
+  }
+}
+
 export async function getEthBlockNumber() {
   const body = {
     method: "POST",
@@ -58,6 +70,7 @@ export async function getEthBlockLatest() {
 }
 
 export async function getEthBlockByID(id) {
+  inputValidation(id);
   const body = {
     method: "POST",
     body: JSON.stringify({

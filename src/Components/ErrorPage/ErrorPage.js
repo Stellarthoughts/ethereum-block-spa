@@ -6,7 +6,7 @@ function ErrorPage() {
   const error = useRouteError();
 
   return (
-    <Container className="container-pad" fluid>
+    <Container className="container-pad">
       <h1 className="container-adjust-pad">ETH Block Viewer</h1>
       <BlockSelector />
       <Container className="container-pad" fluid>

@@ -17,13 +17,13 @@ function TransactionTable(props) {
 					return (
 						<tr key={x.hash}>
 							<td>
-								<ClickToCopy truncate amount={25} text={x.from} />
+								<ClickToCopy truncate amount={25} text={x.from} action={props.action}/>
 							</td>
 							<td>
-								<ClickToCopy truncate amount={25} text={x.to} />
+								<ClickToCopy truncate amount={25} text={x.to} action={props.action}/>
 							</td>
 							<td>
-								<ClickToCopy truncate amount={15} text={x.hash} />
+								<ClickToCopy truncate amount={15} text={x.hash} action={props.action}/>
 							</td>
 						</tr>
 					);
@@ -56,7 +56,7 @@ function BlockTransactions(props) {
 				<Pagination>
 					{pagenationItems}
 				</Pagination>
-				<TransactionTable items={items.slice((active - 1) * perPage, active * perPage)}/>
+				<TransactionTable items={items.slice((active - 1) * perPage, active * perPage)} action={props.showModal}/>
       </Container>
     );
   } else return <></>;

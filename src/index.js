@@ -10,7 +10,7 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BlockPage from "./Components/BlockPage/BlockPage";
 import reportWebVitals from "./reportWebVitals";
-import { getEthBlockByID, getEthBlockNumber } from "./Logic/Request";
+import { getEthBlockByID, getEthBlockLatest} from "./Logic/Request";
 import ErrorPage from "./Components/ErrorPage/ErrorPage";
 
 // All routes in this SPA are listed here. Redirects from / and /block to latest block,
@@ -37,18 +37,13 @@ const router = createBrowserRouter([
   },
   {
     path: "/block/latest",
-    element: <LatestReroute />,
+    element: <BlockPage />,
     loader: async () => {
-      return getEthBlockNumber();
+      return getEthBlockLatest();
     },
     errorElement: <ErrorPage />,
   },
 ]);
-
-function LatestReroute() {
-  const loader = useLoaderData();
-  return <Navigate to={`../${parseInt(loader.result, 16)}`} relative="path" />;
-}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

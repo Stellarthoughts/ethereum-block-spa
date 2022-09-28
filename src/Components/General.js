@@ -5,7 +5,7 @@ export function ClickToCopy(props) {
 
   const copy = async () => {
     await navigator.clipboard.writeText(text);
-    alert("Text copied!");
+    props.action();
   };
 
   return (

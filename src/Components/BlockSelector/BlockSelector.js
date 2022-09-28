@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Container, Form, Stack } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
-function BlockSelector(props) {
+function BlockSelector() {
   const navigate = useNavigate();
   const [blockNum, changeBlockNum] = useState(0);
 
@@ -26,6 +26,7 @@ function BlockSelector(props) {
             <Form.Control
               style={{ maxWidth: 500 }}
               type="number"
+							min="0"
               placeholder="Block number"
               onChange={handleOnChange}
             />
