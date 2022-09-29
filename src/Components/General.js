@@ -10,7 +10,11 @@ export function ClickToCopy(props) {
 
   return (
     <Button style={{ width: "100%" }} onClick={copy}>
-			{props.truncate ? `${props.text.substring(0,props.amount)}..` : props.text}
+			{props.truncate ? 
+        (props.text.length > props.amount ? 
+          `${props.text.substring(0,props.amount)}..` 
+          : props.text) 
+        : props.text}
     </Button>
   );
 }

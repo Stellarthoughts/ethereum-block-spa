@@ -13,6 +13,7 @@ async function handleEth_getBlockByNumber(res) {
       }
     );
   }
+  resultValidation(json);
   return json;
 }
 
@@ -33,6 +34,14 @@ function inputValidation(val) {
   if(val < 0) {
     throw new Response("Bad request value. Negative.", { status: 404 });
   }
+}
+
+function resultValidation(res) {
+  // Check for empty contracts (sent to null)
+  res.result.transactions.forEach(x => {
+    if(x.to === null)
+      x.to = "null";
+  });
 }
 
 export async function getEthBlockNumber() {
