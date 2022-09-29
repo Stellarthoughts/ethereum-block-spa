@@ -53,7 +53,7 @@ function BlockTransactions(props) {
   if (props.show) {
     return (
       <Container className="container-pad" fluid>
-				<Pagination>
+				<Pagination className="flex-wrap">
 					{pagenationItems}
 				</Pagination>
 				<TransactionTable items={items.slice((active - 1) * perPage, active * perPage)} action={props.showModal}/>
